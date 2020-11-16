@@ -20,7 +20,7 @@ const routes = [
   {
     component: HomeViewComponent,
     name: 'HomeViewComponent',
-    path: '/home'
+    path: '/'
   }
 ]
 

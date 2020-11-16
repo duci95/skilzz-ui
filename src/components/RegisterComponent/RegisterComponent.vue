@@ -58,7 +58,7 @@
             usernameRules(){
                 return [
                     v => !!v || 'Username is required',
-                    v => /^[A-ZŠĐČĆŽa-zšđčćž0-9_\s]+$/.test(v) || "Username can contain  characters",
+                    v => /^[A-ZŠĐČĆŽa-zšđčćž0-9_]+$/.test(v) || "Username can contain  characters",
                     v => (v && v.length <= 30) || 'Username cannot be longer than 30 characters',
                     v => (v && v.length >= 6) || 'Username cannot be shorter than 6 characters'
                 ]

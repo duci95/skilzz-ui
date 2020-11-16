@@ -1,11 +1,11 @@
 <template src="./template.html"></template>
-<style scoped src="./style.css"></style>
 <script>
     export default {
-        name: "FooterComponent"
+        name: "FooterComponent",
+        data(){
+            return{
+                date: new Date().getFullYear()
+            }
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

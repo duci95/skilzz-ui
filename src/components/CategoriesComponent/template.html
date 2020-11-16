@@ -1,0 +1,14 @@
+<v-main>
+	<v-container>
+		<v-card>
+			<v-list>
+				<v-list-item v-for="category in categories">
+					<p>
+						{{category.category_name}}
+					</p>
+					{{category.description}}
+				</v-list-item>
+			</v-list>
+		</v-card>
+	</v-container>
+</v-main>
