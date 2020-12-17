@@ -1,6 +1,6 @@
 <template src="./template.html" />
 <script>
-    import ApiService from "../../services/ApiService";
+    import {apiClient} from "../../services/ApiService";
     export default {
         name: "RegisterComponent",
         data(){
@@ -12,33 +12,44 @@
                 password:'',
                 passwordRepeat:'',
                 success: false,
-                error: false,
-                showPassword : false
+                errorEmail: false,
+                errorUsername: false,
+                showPassword : false,
+                displayError: '',
+                error:''
             }
         },
         methods:{
             register: function () {
+                this.errorEmail = false;
+                this.errorUsername = false;
                 this.success = false;
                 this.error = false;
                 if (this.$refs.form.validate()) {
-                    ApiService.apiClient.post('/register', {
-                        firstname: this.firstname,
-                        lastname: this.lastname,
+                    apiClient.post('/register', {
+                        first_name: this.firstname,
+                        last_name: this.lastname,
                         username: this.username,
                         email: this.email,
                         password: this.password,
                         passwordRepeat: this.passwordRepeat
                     })
-                        .then(response => {
-                            console.log(response.data)
-                            this.success = true;
-                        })
-                        .catch(_ => { // eslint-disable-line no-unused-vars
-
-                        })
+                    .then(response => {
+                        console.log(response.data)
+                        this.success = true;
+                    })
+                    .catch(error => {
+                        let err = error.response.data.split(" ");
+                        this.displayError = err[2];
+                        if(err[2].indexOf('@') === -1){
+                            this.errorUsername = true;
+                        }
+                        if(err[2].indexOf('@') !== -1){
+                            this.errorEmail = true;
+                        }
+                    })
                 }
             },
-
         },
         computed:{
             firstnameRules(){
@@ -58,8 +69,8 @@
             usernameRules(){
                 return [
                     v => !!v || 'Username is required',
-                    v => /^[A-ZŠĐČĆŽa-zšđčćž0-9_]+$/.test(v) || "Username can contain  characters",
-                    v => (v && v.length <= 30) || 'Username cannot be longer than 30 characters',
+                    v => /^[A-ZŠĐČĆŽa-zšđčćž0-9_$]+$/.test(v) || "Username can contain only characters, numbers $ and _",
+                    v => (v && v.length <= 20) || 'Username cannot be longer than 20 characters',
                     v => (v && v.length >= 6) || 'Username cannot be shorter than 6 characters'
                 ]
             },
@@ -87,7 +98,6 @@
                     v => v.size < 3000000 || 'Avatar size can not be more than 3 MB!',
                 ]
             }
-
         },
         created() {
 

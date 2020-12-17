@@ -12,7 +12,7 @@ export default {
     },
     methods:{
         async getCategories(){
-            await apiClient.get('/categories')
+            await apiClient.get('categories')
                 .then(response =>  {
                     this.categories = response.data
                 })

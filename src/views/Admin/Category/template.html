@@ -1,0 +1,47 @@
+<v-main>
+	<v-card width="500" class="mx-auto mt-5">
+		<v-alert
+				dismissible
+				type="success"
+				border="left"
+				text
+				v-show="success"
+		>
+			Category successfully added!
+		</v-alert>
+		<v-alert
+				dismissible
+				type="success"
+				border="left"
+				text
+				v-show="error"
+		>
+			Category already exists!
+		</v-alert>
+		<v-card-title class="justify-center blue">
+			<h3 class="display-1 white--text text-uppercase">Add category</h3>
+		</v-card-title>
+		<v-spacer></v-spacer>
+		<v-card-text>
+			<v-form>
+				<v-text-field
+					placeholder="Category name"
+					v-model="category.name"
+				>
+				</v-text-field>
+				<v-text-field
+						placeholder="Category description"
+						v-model="category.description"
+				>
+				</v-text-field>
+			</v-form>
+		</v-card-text>
+		<v-card-actions class="">
+			<v-btn class="primary ma-0" @click="save">Save</v-btn>
+		</v-card-actions>
+	</v-card>
+
+		<li v-for="category in categories" :key="category.id">{{category.name}} {{category.description}}</li>
+</v-main>
+
+

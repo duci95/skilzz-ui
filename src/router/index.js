@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import LoginViewComponent from "../views/LoginViewComponent";
 import RegisterViewComponent from "../views/RegisterViewComponent";
 import HomeViewComponent from "@/views/HomeViewComponent";
+import AddCategoryViewComponent from "@/views/Admin/Category/AddCategoryViewComponent";
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     component: HomeViewComponent,
     name: 'HomeViewComponent',
     path: '/'
+  },
+  {
+    component: AddCategoryViewComponent,
+    name: 'AddCategoryViewComponent',
+    path: '/admin/categories/insert'
   }
 ]
 

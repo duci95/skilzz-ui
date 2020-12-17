@@ -28,7 +28,7 @@
     };
 </script>
 <style>
-    a,router-link{
+    a{
         text-decoration: none;
     }
     a:visited{

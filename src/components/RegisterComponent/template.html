@@ -5,19 +5,30 @@
                 type="success"
                 border="left"
                 text
-                v-if="success"
+                v-show="success"
         >
             Congratulation! <br> You have successfully registered!
         </v-alert>
-        <v-alert
-                dismissible
-                type="error"
-                border="left"
-                text
-                v-if="error"
-        >
-            Account with username {{this.username}} already exists
-        </v-alert>
+        <template v-if="errorUsername">
+			<v-alert
+					dismissible
+					type="error"
+					border="left"
+					text
+			>
+				Account with username {{this.displayError}} already exists
+			</v-alert>
+		</template>
+		<template v-if="errorEmail">
+			<v-alert
+					dismissible
+					type="error"
+					border="left"
+					text
+			>
+				Email {{this.displayError}} already exists
+			</v-alert>
+		</template>
     <v-card-title class="justify-center blue">
         <h3 class="display-1 white--text text-uppercase">Register</h3>
     </v-card-title>
@@ -29,19 +40,21 @@
                         prepend-icon="mdi-account-circle"
                         v-model="firstname"
                         :rules="firstnameRules"
+						counter="30"
                 />
                 <v-text-field
                         label="Last name"
                         prepend-icon="mdi-account-circle"
                         v-model="lastname"
                         :rules="lastnameRules"
+						counter="50"
                 />
                 <v-text-field
                         label="Username"
                         prepend-icon="mdi-account-outline"
                         v-model="username"
                         :rules="usernameRules"
-                        :counter="30"
+                        counter="20"
                 />
 
                 <v-text-field
@@ -57,7 +70,7 @@
                         :type="showPassword ? 'text' : 'password'"
                         @click:append="showPassword  = !showPassword"
                         v-model="password"
-                        :counter="30"
+                        counter="20"
                         :rules="passwordRules"
                 />
                 <v-text-field
@@ -65,7 +78,7 @@
                         prepend-icon="mdi-lock"
                         type="password"
                         v-model="passwordRepeat"
-                        :counter="30"
+                        counter="20"
                         :rules="passwordConfirmRules"
                 />
             </v-form>
