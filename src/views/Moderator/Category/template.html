@@ -11,7 +11,7 @@
 		</v-alert>
 		<v-alert
 				dismissible
-				type="success"
+				type="error"
 				border="left"
 				text
 				v-show="error"
@@ -36,12 +36,8 @@
 				</v-text-field>
 			</v-form>
 		</v-card-text>
-		<v-card-actions class="">
+		<v-card-actions >
 			<v-btn class="primary ma-0" @click="save">Save</v-btn>
 		</v-card-actions>
 	</v-card>
-
-		<li v-for="category in categories" :key="category.id">{{category.name}} {{category.description}}</li>
 </v-main>
-
-

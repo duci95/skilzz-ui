@@ -3,10 +3,8 @@
 		<v-card>
 			<v-list>
 				<v-list-item v-for="category in categories">
-					<p>
-						{{category.category_name}}
-					</p>
-					{{category.description}}
+					{{category.name}} {{category.description}}
+					<router-link :to="{ name: 'QuestionsViewComponent', params:{ id: category.id} }">Go to questions</router-link>
 				</v-list-item>
 			</v-list>
 		</v-card>

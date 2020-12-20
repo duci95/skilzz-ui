@@ -1,0 +1,16 @@
+<v-main>
+	<v-container>
+		<v-row justify="start" v-for="question in questions">
+			<v-list-item-group>
+				<v-list>
+					<v-list-item class="primary text--white" dark dense color="white">
+						<v-list-item-content class="primary">
+							<span class="text-center">{{question.question}}</span>
+						</v-list-item-content>
+					</v-list-item>
+				</v-list>
+			</v-list-item-group>
+		</v-row>
+	</v-container>
+	<router-link :to="{name: 'AddQuestionViewComponent', params:{id:this.id}}">Add question</router-link>
+</v-main>

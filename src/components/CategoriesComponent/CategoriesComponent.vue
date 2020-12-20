@@ -2,27 +2,27 @@
 
 <script>
 import {apiClient} from "@/services/ApiService";
+import Category from "../../models/Category";
 
 export default {
     name: "CategoriesComponent",
-    data(){
-        return{
-            categories:[]
+    methods:{
+        getCategories(){
+            apiClient.get('categories')
+            .then(response => {
+                Category.insert({data:response.data})
+            })
+            .catch(err => {
+            });
         }
     },
-    methods:{
-        async getCategories(){
-            await apiClient.get('categories')
-                .then(response =>  {
-                    this.categories = response.data
-                })
-                .catch(err => {
-                    console.log(err)
-                });
-        }
+    computed:{
+      categories(){
+          return Category.all()
+      }
     },
     created() {
-        this.getCategories();
+       this.getCategories();
     }
 }
 </script>

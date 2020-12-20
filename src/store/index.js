@@ -1,14 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import VuexORM from '@vuex-orm/core'
-import Category from "../models/Category"
+import Vue from 'vue';
+import Vuex from 'vuex';
+import VuexORM from '@vuex-orm/core';
+import Category from "../models/Category";
+import User from "../models/User";
+import Question from "../models/Question";
 
+Vue.use(Vuex);
 
-Vue.use(Vuex)
+const database = new VuexORM.Database();
 
-const database = new VuexORM.Database()
-
-database.register(Category)
+database.register(User);
+database.register(Category);
+database.register(Question);
 
 export default new Vuex.Store({
   // state: {
